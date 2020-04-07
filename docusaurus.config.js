@@ -1,11 +1,11 @@
 module.exports = {
-  title: 'My Site',
+  title: 'Young\'s Blog',
   tagline: 'The tagline of my site',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  favicon: 'img/20.svg',
+  organizationName: 'wwwyyying', // Usually your GitHub org/user name.
+  projectName: 'Young\'s blog', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Young.W',
@@ -14,15 +14,15 @@ module.exports = {
         src: 'img/logo.png',
       },
       links: [
-        // {
-        //   to: 'docs/doc1',
-        //   activeBasePath: 'docs',
-        //   label: 'Docs',
-        //   position: 'left',
-        // },
+        {
+          to: 'docs/doc1',
+          activeBasePath: 'docs',
+          label: 'Docs',
+          position: 'left',
+        },
         {to: 'blog', label: 'Blog', position: 'right'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/wwwyyying',
           label: 'GitHub',
           position: 'right',
         },
@@ -66,27 +66,30 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/wwwyyying',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
+              label:'Weibo'
+            }
+            // {
+            //   label: 'Twitter',
+            //   href: 'https://twitter.com/docusaurus',
+            // },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Young's Blog, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
     [
       '@docusaurus/preset-classic',
       {
-        // docs: {
-        //   sidebarPath: require.resolve('./sidebars.js'),
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/edit/master/website/',
-        // },
+        docs: {
+          sidebarPath: require.resolve('./sidebars.js'),
+          editUrl:
+            'https://github.com/facebook/docusaurus/edit/master/website/',
+        },
         blog:{
           path:"./blog",
           routeBasePath:"/"
