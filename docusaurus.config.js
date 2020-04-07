@@ -79,6 +79,7 @@ module.exports = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Young's Blog, Inc. Built with Docusaurus.`,
+      record:`冀ICP备20006774号-1`,
     },
   },
   presets: [
