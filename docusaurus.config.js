@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Young\'s Blog',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  tagline: '',
+  url: 'http://www.youngw.fun',
   baseUrl: '/',
   favicon: 'img/20.svg',
   organizationName: 'wwwyyying', // Usually your GitHub org/user name.
@@ -17,10 +17,10 @@ module.exports = {
         {
           to: 'docs/doc1',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: '专栏',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'right'},
+        {to: '/', label: '博客', position: 'left'},
         {
           href: 'https://github.com/wwwyyying',
           label: 'GitHub',
@@ -30,56 +30,56 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/doc1',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'Social',
-          items: [
-            {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/wwwyyying',
-            },
-            {
-              label:'Weibo'
-            }
-            // {
-            //   label: 'Twitter',
-            //   href: 'https://twitter.com/docusaurus',
-            // },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Young's Blog, Inc. Built with Docusaurus.`,
-      record:`冀ICP备20006774号-1`,
+      // links: [
+      //   {
+      //     title: 'Docs',
+      //     items: [
+      //       {
+      //         label: 'Style Guide',
+      //         to: 'docs/doc1',
+      //       },
+      //       {
+      //         label: 'Second Doc',
+      //         to: 'docs/doc2',
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     title: 'Community',
+      //     items: [
+      //       {
+      //         label: 'Stack Overflow',
+      //         href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+      //       },
+      //       {
+      //         label: 'Discord',
+      //         href: 'https://discordapp.com/invite/docusaurus',
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     title: 'Social',
+      //     items: [
+      //       {
+      //         label: 'Blog',
+      //         to: 'blog',
+      //       },
+      //       {
+      //         label: 'GitHub',
+      //         href: 'https://github.com/wwwyyying',
+      //       },
+      //       {
+      //         label:'Weibo'
+      //       }
+      //       // {
+      //       //   label: 'Twitter',
+      //       //   href: 'https://twitter.com/docusaurus',
+      //       // },
+      //     ],
+      //   },
+      // ],
+      copyright: `Copyright © ${new Date().getFullYear()} Young's Blog Built with Docusaurus.`,
+      icp:"冀ICP备20006774号-1",
     },
   },
   presets: [
