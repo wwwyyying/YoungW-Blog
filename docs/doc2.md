@@ -1,7 +1,7 @@
 ---
 id: doc2
-title: let、var、const
-sidebar_label: 详解JavaScript中let、var和const的区别
+title: 详解JavaScript中let、var和const的区别
+sidebar_label: let、var、const
 ---
 
 
