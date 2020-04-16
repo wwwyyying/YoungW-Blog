@@ -44,7 +44,7 @@ function Footer() {
   const { themeConfig = {} } = siteConfig;
   const { footer } = themeConfig;
 
-  const { copyright, links = [], logo = {}, icp } = footer || {};
+  const { copyright, links = [], logo = {}, icp , netSecurity} = footer || {};
   const logoUrl = useBaseUrl(logo.src);
 
   if (!footer) {
@@ -109,7 +109,7 @@ function Footer() {
               </div>
             )}
             <div>{copyright}</div>
-            <a href="http://beian.miit.gov.cn/">{icp}</a>
+            <a href="http://beian.miit.gov.cn/">{icp}</a>&nbsp;&nbsp;&nbsp;
             <a href="http://www.beian.gov.cn/portal/registerSystemInfo">{netSecurity}</a>
           </div>
         )}
