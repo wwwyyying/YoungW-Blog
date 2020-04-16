@@ -110,6 +110,7 @@ function Footer() {
             )}
             <div>{copyright}</div>
             <a href="http://beian.miit.gov.cn/">{icp}</a>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo">{netSecurity}</a>
           </div>
         )}
       </div>
