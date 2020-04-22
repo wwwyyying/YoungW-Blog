@@ -1,12 +1,11 @@
 ---
-id: doc5
-title: Style Guide
-sidebar_label: Style Guide
+id: array
+title: 详解JavaScript中的数组API
+sidebar_label: 数组
 ---
 
-You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).
 
-## Markdown Syntax
+## Array构造器方法
 test_5 test_5test_5test_5test_5
 To serve as an example page when styling markdown based Docusaurus sites.
 

@@ -1,5 +1,5 @@
 ---
-id: doc2
+id: let-var-const
 title: 详解JavaScript中let、var和const的区别
 sidebar_label: let、var、const
 ---

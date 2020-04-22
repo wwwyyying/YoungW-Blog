@@ -15,7 +15,7 @@ module.exports = {
       },
       links: [
         {
-          to: 'docs/doc1',
+          to: 'docs/string',
           activeBasePath: 'docs',
           label: '专栏',
           position: 'left',
@@ -80,7 +80,7 @@ module.exports = {
       // ],
       copyright: `Copyright © ${new Date().getFullYear()} Young's Blog Built with Docusaurus.`,
       icp:"冀ICP备20006774号-1",
-      netSecurity:"冀公网安备 13060602001230 号",
+      netSecurity:"冀公网安备13060602001230号",
     },
   },
   presets: [

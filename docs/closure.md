@@ -1,5 +1,5 @@
 ---
-id: doc1
+id: closure
 title: 详解JavaScript中的闭包
 sidebar_label: 闭包
 ---

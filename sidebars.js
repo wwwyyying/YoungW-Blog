@@ -1,8 +1,8 @@
 module.exports = {
   someSidebar: {
     //HTML & CSS: ['doc1', 'doc2', 'doc3'],
-    JavaScript:['doc1','doc2','doc3'],
-    每日一题: ['doc4', 'doc5', 'doc6'],
+    JavaScript:['string','let-var-const','closure'],
+    数据结构与算法: ['array_2'],
     //Features: ['mdx'],
   },
 };

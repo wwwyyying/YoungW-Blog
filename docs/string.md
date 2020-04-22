@@ -1,5 +1,5 @@
 ---
-id: doc3
+id: string
 title: 详解JavaScript中字符串API
 sidebar_label: 字符串
 ---
