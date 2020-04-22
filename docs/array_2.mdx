@@ -4,11 +4,13 @@ title: 数组
 sidebar_label: 数组
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 数据的结构类型总共分四类：集合结构、线性结构、树形结构和图结构。数组是属于线性结构的一种，是顺序存储数据的结构。在JavaScript中，一个数组里的元素并不强调是同一类型，可以包含多个数据类型的元素。
 
 ## 属性
 
-![alt text](https://github.com/wwwyyying/YoungW-Blog/tree/master/static/array_2/array_attr.jpg)
+<img alt='' src={useBaseUrl("img/array_attr.jpg")} />
 
 - 数组里的各个变量成为数组的元素。
 - 用于区分数组各个元素的数字编号称为下标。
@@ -257,3 +259,5 @@ arr.sort(function(a,b){ return Math.random()>.5 ? -1 : 1;});
 ```
 
 若 value1 和 value2 的比较结果是随机的（如举例所示），会出现数组乱序的现象。调用 sort 方法，在排序过程中，每次执行会取得随机浮点数。根据随机数来调整每个元素的位置。最后得到乱序之后的数组。
+
+---
