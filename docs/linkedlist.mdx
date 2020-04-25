@@ -1,0 +1,282 @@
+---
+id: linkedlist
+title: 链表
+sidebar_label: 链表
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+## 链表的定义
+
+1. 链表是线性结构
+2. 链表的存储方式是不连续的，是将零散的内存块串联起来
+3. 每个内存块成为节点Node，除了存储数据，还需要存储指向下个内存块的指针
+4. 以 head 为头节点，头结点可以不存放任何数据，它是链表的开始，指向链表中第一个节点，而每个节点都有一个 next 的向下引用，指向下一个节点，直到最后一个节点。每一个节点由两部分组成，包括 data（存放数据），next（指向下一个节点）
+
+<img alt='' src={useBaseUrl("img/linkedlist/definition.jpg")} />
+
+## 链表中常见的名词
+1. 首元结点：就是指链表中存储第一个数据元素的结点
+2. 头节点：它是在首元结点之前附设的一个节点，其指针指向首元节点
+3. 头指针：指向链表中的第一个结点的指针
+
+## 使用链表的必要性
+在使用数组的时候需要预先知道数组的大小，然后去申请内存。而链表则不然，它可以实现动态管理内存。
+
+### 复杂度
+1. 数组：增删O(n),随机访问O(1)
+2. 链表：增删O(1),随机访问O(n)
+
+### 数组缺点
+1. 需要申请连续的空间，若连续空间不足则会申请失败
+2. 大小固定，空间不足需要扩容的情况下需要进行数据复制
+
+### 链表缺点
+1. 占用内存空间过大，需要额外保存指针
+2. 增删频繁的情况下，需要频繁地申请和释放内存，容易产生内存碎片
+
+### 选择
+1. 访问操作 > 增删操作 ---数组
+2. 增删操作 > 访问操作 ---链表
+
+## 常见链表
+### 单向链表
+1. 每个节点只包含一个后继指针
+2. 单链表中有两个特殊的节点，即首节点和尾节点。首节点表示链表起始点，尾节点表示链表结束
+3. 性能：插入和删除节点的时间复杂度为O(1),查找的时间复杂度为O(n)
+
+<img alt='' src={useBaseUrl("img/linkedlist/single.jpg")} />
+
+### 单向循环链表
+
+尾节点的后继指针指向首节点的单项链表
+
+<img alt='' src={useBaseUrl("img/linkedlist/singlecircle.jpg")} />
+
+### 双向链表
+1. 每个节点有两个指针，指向前一个节点地址（前驱指针prev）和下一个节点地址（后继指针next）
+2. 首节点的前驱指针和尾节点的后继指针均指向空地址
+3. 性能：
+ - 和单链表相比，存储相同的数据，需要消耗更多的存储空间。每个节点需要两个指针
+ - 插入、删除操作比单链表效率更高O(1)级别。例如：给定数据值删除对应节点。单链表和双向链表，都需要从头到尾进行遍历，从而找到对应节点进行删除，时间复杂度为 O(n)。给定节点地址删除节点。要进行此操作必须找到前驱节点，单链表需要从头到尾，进行遍历直到 p->next = q，时间复杂度为 O(n)，而双向链表可以直接找到前驱节点，时间复杂度为 O(1)。
+ - 对于一个有序链表，双向链表的按值查询效率要比单链表高一些。可逆向查找，节省查找时间。
+
+<img alt='' src={useBaseUrl("img/linkedlist/double.jpg")} />
+
+### 双向循环链表
+首节点的前驱指针指向尾节点，尾节点的后继指针指向首节点。
+
+<img alt='' src={useBaseUrl("img/linkedlist/doublecircle.jpg")} />
+
+## JavaScript代码实现
+
+```javascript
+//JavaScript实现 定义一个链表，实现增删改查功能
+
+//定义一个创建节点的类
+class Node{
+  constructor(element){
+    this.element = element;
+    this.next = null
+  }
+}
+//定义链表类
+class LinkList {
+    constructor() {
+        this.length = 0;
+        this.head = null;
+    }
+    // 追加  若链表为空，则设置head，若不为空，将尾节点的next指向element，而后长度 + 1
+    append(element){
+        let node = new Node(element);
+        let current;
+        if(!this.head) {
+            this.head = node;
+        } else {
+            current = this.head;
+            while(current.next) {
+                current = current.next;
+            }
+            current.next = node;
+        }
+        ++this.length;
+    }
+  	/*
+  		1. 若position 为 0  将element的指针指向head
+  		2. 不为0 设置previous和next的指向
+  		3. 长度 + 1
+  	*/ 
+    insert(position, element){
+        let current;
+        let previous;
+        let index = 0;
+        let node = new Node(element);
+        if(position>=0 && position<=this.length) {
+            if(position === 0) {
+                node.next = this.head;
+                this.head = node;
+            } else {
+                current = this.head;
+                while(index < position) {
+                    previous = current;
+                    current = current.next;
+                    index++;
+                }
+                node.next = current;
+                previous.next = node;
+            }
+            this.length++;
+        }
+    }
+  	/*
+  		根据索引删除
+  		改变position - 1 处的指针指向
+  	*/
+    removeAt(position){
+        let current;
+        let previous;
+        let index = 0;
+        if(position > -1 && position < this.length) {
+            current = this.head;
+            if(position === 0) {
+                this.head = current.next;
+            } else {
+                while(index < position) {
+                    previous = current;
+                    current = current.next;
+                    index++;
+                }
+                previous.next = current.next;
+            }
+            --this.length;
+            return true;
+        }
+        return false;
+    }
+  	// 删除执行元素，首先查找元素下标，然后调用索引删除函数
+    remove(element){
+        let index = this.indexOf(element);
+        this.removeAt(index);
+    }
+  	// 查找element所对应的索引值 未找到返回 -1
+    indexOf(element){
+        let index = 0;
+        let current = this.head;
+        while(current) {
+            if(current.element === element) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
+  	// 查看链表是否为空
+    isEmpty(){
+        return this.length === 0;
+    }
+  	// 查看链表长度
+    size(){
+        return this.length;
+    }
+}
+```
+
+## 附
+### 查找链表中的环
+<img alt='' src={useBaseUrl("img/linkedlist/circle.jpg")} />
+
+这张图上，链表中 5 这个节点的后继指针指向了 3 这个节点，所以在 3，4，5 这个区间内形成了一个环状链表。于循环链表不同的是环节点并不是首元结点，所以只能说这个链表中有环，但是不能说这是个循环链表。
+
+方法一：遍历的每个节点，记录下是否出现，如果再次出现，则说明重复出现的这个元素是环节点。这种方式可以实现，只是我们需要维护一个列表用来记录每一个节点是否出现过，这样一来，空间复杂度又提高了。
+
+方法二：可以使用指针的方式，定义两个指针从头节点开始遍历链表，如果两个指针有相遇，则说明链表中有环。
+
+```javascript
+function judge(list){
+  let fast = list.next.next; // 快指针，每次走两步
+  let slow = list.next; // 慢指针，每次走一步
+  while(list){
+    if(fast === slow) { // 如果快慢指针相遇，表示有环2
+      return true;
+    }
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  return false;
+}
+```
+
+### 查找未知长度链表中倒数第k个元素
+
+方法一：
+1. 先遍历链表，获取链表长度；
+2. 将链表长度 - (k + 1) 获取到要查找的索引值 ；
+3. 再次遍历数组，获取到该索引位置的值；
+4. 若查找不到，返回 -1；
+5. 缺点：需要遍历两次才能查找到。
+
+```javascript
+/*
+	输入： 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11;
+*/
+
+function searchIndex(linkList) {
+  	let num = 0;
+  	let middle = linkList.next;
+  	if(middle === null) {
+      return num;
+    }
+  	// 遍历数组并记录长度
+  	while(middle){
+      num ++;
+      middle = middle.next;
+    }
+  	return num;
+};
+function searchNode(linkList, k){
+  let index = 0;
+  let resultIndex = searchIndex(linkList) - k + 1;
+  let middle = linkList.next;
+  if(middle === null){
+    return -1;
+  }
+  while(linkList){
+    index ++;
+    if(index === resultIndex){
+      return middle.val;
+    }
+    middle = middle.next;
+  }
+  return -1;
+}
+let linkList = {};
+console.log(searchNode(linkList, 3)); //查找该链表的倒数第三个元素
+```
+
+方法二：
+1. 首先定义两个指针；
+2. 先让指针 p1 向前移动 k - 1步；
+3. 遍历链表，如果 p1 指到了尾节点，此时 p2 的位置是我们要查找的元素位置，返回 p2；
+4. 只需要遍历一次就可以查找到元素。
+
+```javascript
+/*
+	输入： 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11;
+*/
+function searchNode(linkList, k){
+  let p1 = linkList.next;
+  let p2 = linkList.next;
+  if (p1 === null) {
+    return -1;
+  }
+  for (let i = 0;i < k - 1;i ++) {
+    p1 = p1.next;
+  }
+  while(p1.next){
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+  return p2.val;
+}
+```
