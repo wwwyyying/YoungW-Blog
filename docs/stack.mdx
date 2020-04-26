@@ -1,0 +1,263 @@
+---
+id: stack
+title: 栈和队列
+sidebar_label: 栈和队列
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';='
+
+## 栈 
+
+1. 又叫堆栈
+2. 受限操作：限定只能在表尾进行增加和删除操作。可进行操作的一端成为 栈顶 。不可操作的一端成为 栈底 。
+3. 增加元素的操作又称为进栈、入栈或者压栈。意思是把元素添加到栈顶的位置。
+4. 删除元素的操作又称为出栈或者退栈。意思是把元素从栈顶移除。使其相邻元素成为栈顶元素。
+
+<img alt='' src={useBaseUrl("img/stack/stack.jpg")} />
+
+## 队列 
+
+1. 受限操作：限定只能在表的前端进行删除操作，只能在表的后端进行插入操作。
+2. 进行插入操作的一端称为队尾，进行删除操作的一端称为队头。
+3. 增加元素的操作称为入队列 ，意思是把元素添加到队尾的位置。
+4. 删除元素的操作称为出队列 ，意思是把元素从队头位置移除。
+
+<img alt='' src={useBaseUrl("img/stack/queue.jpg")} />
+
+## JavaScript代码实现
+
+### 栈
+
+```javascript 
+// 创建一个栈，并实现基本方法
+// 首先定义一个栈的类
+class Stack{
+  constructor() {
+    this.data = [];
+  }
+  // 入栈方法
+  push(element){
+    this.data.push(element);
+    return this.data.length;
+  }
+  // 出栈方法
+  pop() {
+    if(this.data.length){
+      this.data.pop()
+      return this.data.length;
+    }
+    return false;
+  }
+  // 查询栈顶方法
+  searchStackTop() {
+    return this.data[this.data.length - 1];
+  }
+  // 查询栈是否为空
+  isEmpty() {
+    return this.data.length === 0
+  }
+  // 清空栈的方法
+  clear() {
+    this.data = [];
+  }
+}
+```
+
+### 队列
+```javascript
+// 创建一个队列，实现基本操作方法
+// 定义一个队列类
+class Queue{
+  constructor() {
+    this.data = [];
+  }
+  // 入队列方法
+  push(element) {
+    this.data.push(element);
+    return this.data.length;
+  }
+  // 出队列方法 从队头取出元素
+  pop() {
+    if(this.data.length){
+      this.data.shift();
+      return this.data.length;
+    }
+  }
+  // 查询队头元素
+  searchQueueHead() {
+    return this.data[0];
+  }
+  // 清空队列方法
+  clear() {
+    this.data = [];
+  }
+  // 查询队列是否为空
+  isEmpty() {
+    return this.data.length === 0;
+  }
+}
+```
+
+## 栈溢出
+
+栈溢出一般指的是，我们定义的数据所需要占用的内存超过了栈的大小时，就会发生栈溢出。如：
+
+```javascript
+// 前端常见 -- 执行栈溢出。
+function sum(a){
+  sum(a);
+  console.log(1);
+}
+```
+
+执行过程：函数调用会在内存形成一个"调用记录"，又称"调用帧"，保存调用位置和内部变量等信息。
+
+1. 执行 sum 函数；
+2. ……无限循环调用 sum 函数；
+3. 直到调用记录超过执行栈的最大存储范围，然后系统抛出错误，终止程序 。
+
+## 栈溢出解决方案————尾递归优化
+### 尾调用
+定义：函数在最后一步调用其他函数，称为尾调用。
+
+```javascript
+// 情况一 不属于尾调用，因为在调用函数后还有其他操作
+function s() {
+	let x = y();
+  console.log(x);
+}
+// 情况二 属于尾调用
+function s(result) {
+  if(result){
+    return y();
+ }
+ return y();
+}
+```
+
+结论：尾调用不一定出现在函数最后，只需要最后一步执行的是函数即可 。
+
+### 尾递归
+定义：函数在最后一步调用自身，成为尾递归。
+
+```javascript
+function s() {
+return s();
+}
+```
+
+1. 执行过程：在执行 第二行代码的时候会先将第一行的函数释放掉；
+
+2. 结论：对于尾递归来说，只会存在一个调用记录，所以栈不会溢出。
+
+## 队列溢出
+队列溢出分为真溢出和假溢出两种
+
+### 真溢出
+1. 定义： 指的是由于存储空间不够而产生的溢出叫真溢出；
+2. 解决方式： 扩容的方式解决。
+
+### 假溢出
+1. 定义： 队列中尚余有足够的空间，但元素却不能入队。一般是由于队列的存储结构或操作方式的选择不当所致。
+
+2. 产生原因：
+
+<img alt='' src={useBaseUrl("img/stack/queue_full.jpg")} />
+
+此时是队列达到上限的情况，此时删除一个元素，会成为：
+<img alt='' src={useBaseUrl("img/stack/queue_error.jpg")} />
+此时查询队列会显示队列已满的情况，但明显队列中还有空余位置。
+
+3. 解决方式：
+① 删除元素后将所有元素向前移动一位，此时再次查询队列，不会出现队列已满的情况。
+<img alt='' src={useBaseUrl("img/stack/queue_correct.jpg")} />
+
+②循环队列的解决方式
+
+## 用两个栈实现一个队列
+1. 创建两个栈 stack1 和 stack2；
+2. 向 stack1 里添加元素；（模拟入队列操作）
+3. 将 stack1 的元素反向遍历出栈，并入栈 stack2；（此时得到的 stack2 是与 stack1 顺序相反的元素）
+4. 出队列操作从 stack2 出栈就可以完成。（因为 stack2 等于 stack1 的逆序。stack2 出栈相当于从 stack1 的栈底出栈）
+
+```javascript
+let stack1 = [];
+let stack2 = [];
+function push(node){
+    stack1.push(node);
+}
+// pop方法，模拟出队列操作
+function pop(){
+  	// 若stack2不为空，表示stack2中还有元素，直接做出栈操作
+    if(stack2.length){
+        return stack2.pop();
+    }else{
+      	/* 
+      		stack2为空，查看stack1 若stack1不为空，则将stack1逆序入栈到stack2
+      		如:  stack1 -- 1,2,3,4,5
+      				 stack2 -- 5,4,3,2,1
+      	*/
+        if(stack1.length){
+            var len = stack1.length;
+            for(var i=0;i<len;i++){
+                stack2.push(stack1.pop());
+            }
+          	//逆序完成后 出栈栈顶元素
+            return stack2.pop()
+        }else{
+             return null
+        }
+         
+    }
+}
+```
+
+## 附
+### 去除最外层的括号
+```javascript
+// 原有字符串为
+let originStr = "(()(())(()()))((()))";
+// 删除最外层的之后成为如下字符串
+let resultStr = "()(())(()())(())"
+```
+
+1. 我们使用 size 模拟一个栈操作方式，入栈 size ++ 。 出栈 size --；
+2. 如果 size 的值为 0 ，表示当前的括号为最外层括号，最外层括号不进入结果中；
+3. 遍历结束后，result 字符串为我们想要得到的结果。
+
+代码实现：
+```javascript
+function countStr(S) {
+  	/*
+  		使用size模拟栈操作
+  		当size为 0 的时候表示这个括号为外层括号
+  		入栈 size ++
+  		出栈 size --
+  	*/  
+    let size = 0; 
+    let result = '';
+    for(let i = 0;i < S.length;i ++){
+      // 如果为左括号 入栈 size ++ 
+      if(S[i] === '('){
+        // 外层括号不加入到输出结果中
+        if(size !== 0){
+          result += S[i];
+        }
+        size ++;
+        // 如果为右括号 出栈 size -- 
+      }else{
+        size --;
+        // 外层括号不加入到输出结果中
+        if(size !== 0){
+          result += S[i];
+        }
+      }
+    }
+    return result;
+}
+
+// 原有字符串为
+let originStr = "(()(())(()()))((()))";
+countStr(originStr);
+// 输出 ()(())(()())(()) 成功将最外层括号删除掉
+```
