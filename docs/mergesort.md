@@ -23,4 +23,56 @@ merge函数负责合并和排序小数组来产生大数组，直到回到原始
 3. 如果是，将该项从left数组添加至归并结果数组，并递增用于迭代数组的控制变量；否则，从right数组添加项并递增用于迭代数组的控制变量
 4. 接下来，将left数组所有剩余的项添加到归并数组中，right 数组也是一样
 5. 最后，将归并数组作为结果返回。
+6. 
 <img alt='' src={useBaseUrl("img/bubblesort/merge.PNG")} />
+
+## 代码实现
+```javascript
+const Compare = {
+  LESS_THAN: -1,
+  BIGGER_THAN: 1
+};
+
+function defaultCompare(a, b){
+  if (a===b){
+    return 0;
+  }
+  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
+}
+
+//归并排序
+function mergeSort (array, compareFn = defaultCompare) {
+  if (array.length > 1) {
+    //const {length} = array;
+    const middle = Math.floor(array.length / 2);
+    const left = mergeSort(array.slice(0, middle), compareFn);
+    const right = mergeSort(array.slice(middle), compareFn);
+    array = merge(left, right, compareFn);
+  }
+  return array;
+}
+
+function merge(left, right, compareFn = defaultCompare) {
+  let i = 0;
+  let j = 0;
+  let array = [];
+  while(i<left.length && j < right.length) {
+    array.push(compareFn(left[i],right[j])===Compare.LESS_THAN ? left[i++] : right[j++]);
+  }
+  return array.concat(i<left.length ? left.slice(i) : right.slice(j));
+}
+
+function createNonSortedArray(size){
+  const array = [];
+  for(let i=size;i>0;i--){
+    array.push(i);
+  }
+  return array;
+}
+
+let array = createNonSortedArray(5);
+console.log(array.join());
+array = mergeSort(array);
+console.log(array.join());
+
+```
