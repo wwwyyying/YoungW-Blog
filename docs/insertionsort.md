@@ -15,7 +15,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 3. 只要变量j比0大并且数组中前面的值比待比较的值大，我们就把这个值一道当前位置上并减小j。
 4. 最终，能将该值插入到正确的位置上。
 
-<img style="text-align:center" alt='' src={useBaseUrl("img/bubblesort/selection.PNG")} />
+<img alt='' src={useBaseUrl("img/bubblesort/selection.PNG")} />
 
 ## 代码实现
 ```javascript
