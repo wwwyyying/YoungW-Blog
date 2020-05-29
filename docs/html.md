@@ -6,8 +6,8 @@ sidebar_label: HTML基础
 
 ## 1. DOCTYPE 文档类型声明
 
-- <!DOCTYPE>声明必须放在HTML文档第一行<br/>
-- <!DOCTYPE>声明不是HTML标签
+- <\!DOCTYPE>声明必须放在HTML文档第一行<br/>
+- <\!DOCTYPE>声明不是HTML标签
 
 ## 2. 网页编码设置
 ### Q. 当网页显示出现乱码时
