@@ -107,13 +107,69 @@ margin-top:-50%height; //垂直水平都居中
 ① 圣杯布局
 - 三列布局，中间宽度自适应，两边顶宽
 - 中间栏要在浏览器中优先展示渲染
-- 核心前提：为middle、left和right设置```positive:relative;float:left;```
+- 核心前提：外部container设置padding左右值分别为左侧右侧栏宽度，为middle、left和right设置```positive:relative;float:left;```
 - 利用margin-left负值使left和right定位到相应位置上
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0;}
+    .container{padding:0 200px 0 220px;}
+    .middle,.left,.right{position:relative;float:left;height:600px;}
+    .middle{width:100%;background:pink;}
+    .left{width:220px;background:red;margin-left:-100%;left:-220px;}
+    .right{width:200px;background:blue;margin-left:-200px;right:-200px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="middle">我是中间</div>
+    <div class="left">我是左边</div>
+    <div class="right">我是右边</div>
+  </div>
+</body>
+</html>
+```
 
 ② 双飞翼布局
 
 去掉相对布局,中间栏增加一层div，只需浮动和负边距
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0px;padding:0px;}
+    .main, .sub, .extra{float:left;height:600px;}
+    .main{width:100%;background:pink;}
+    .main .main-inner{margin-left:220px;margin-right:200px;}
+    .sub{width:220px;background:red;margin-left:-100%;}  
+    .extra{width:200px;background:blue;margin-left:-200px;}
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="main-inner">我是中间</div>
+  </div>
+  <div class="sub">我是左边</div>
+  <div class="extra">我是右边</div>
+</body>
+</html>
+```
 
 ## 9.用CSS画三角形
 ① 利用渐变，根据三角形方向设置25% 75%的值及渐变角度
+```css
+div{width:100px;height:100px;background:linear-gradient(45deg,red 25%, transparent 25%);}
+```
 ② 利用border，当div的width和height设为0时，只设置三个方向border值时，就会出现三角形
+```css
+div{width:0;height:0;border-top:50px solid red;border-left:50px solid transparent;border-right:50px solid transparent;}
+```
