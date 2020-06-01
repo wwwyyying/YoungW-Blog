@@ -3,6 +3,7 @@ id: css
 title: CSS基础
 sidebar_label: CSS基础
 ---
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ## 1. CSS使用方法优先级
 
