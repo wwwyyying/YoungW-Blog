@@ -81,4 +81,18 @@ src alt height width属性等
 ## 9. 搭建网页结构
 - ```<div>, <span>```
 - 标签嵌套规则：
-    （1）块级元素可包含行内元素和某些块级元素；（2）行内元素不能包含块级元素，只能包含其他行内元素；（3）p标签不能包含块级元素（4）特殊块级元素只能包含行内元素，不能再包含块级元素，如：h1-h6, p, dt；（5）块级元素与块级元素并列，行内元素与行内元素并列。
+    （1）块级元素可包含行内元素和某些块级元素；
+    （2）行内元素不能包含块级元素，只能包含其他行内元素；（3）p标签不能包含块级元素（4）特殊块级元素只能包含行内元素，不能再包含块级元素，如：h1-h6, p, dt；（5）块级元素与块级元素并列，行内元素与行内元素并列。
+
+## 10. H5
+① 新增标签
+- 结构化标签（块状元素，有意义的div），如header footer section nav article aside hgroup figure figcaption dialog
+- 多媒体标签 video audio canvas source embed
+- web应用标签 meter progress datalist details menu menuitem command
+- 其他标签 ruby rp rt
+
+② 新增属性
+- input： email/url/number/range/Date picker/search/color/tel
+- 表单: autocomplete/autofocus/multiple/placeholder/required
+- 链接: size/target/超链接
+- 其他：script/ol/html/style
